@@ -3,12 +3,7 @@ var inputElement=document.querySelector('#app input');
 var buttonElement=document.querySelector('#app button');
 
 
-var todos= [
-'Fazer Cafe',
-'Estudar JS',
-'Acessar comunidade RocketSeat'
-];
-
+var todos=JSON.parse(localStorage.getItem('list_todos')) || [];
 
 
 renderTodo();
@@ -38,11 +33,19 @@ function addToDo(){
   
 todos.push(inputElement.value);
 renderTodo();
-
+saveToStorage();
 }
 
 function deleteToDo(z){
 todos.splice(z,1);
 renderTodo();
+saveToStorage();
 }
 buttonElement.onclick=addToDo;
+
+
+function saveToStorage(){
+localStorage.setItem('list_todos',JSON.stringify(todos));
+
+
+}
